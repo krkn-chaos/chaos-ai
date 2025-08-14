@@ -154,3 +154,17 @@ class NumberOfNodesParameter(BaseParameter):
 class HogScenarioImageParameter(BaseParameter):
     name: str = "IMAGE"
     value: str = "quay.io/krkn-chaos/krkn-hog"
+
+class ObjectTypeParameter(BaseParameter):
+    name: str = "OBJECT_TYPE"
+    value: str = ""  # Available Types: pod, node
+
+    def mutate(self):
+        self.value = random.choice(["pod", "node"])
+ 
+class ActionTimeParameter(BaseParameter):
+    name: str = "ACTION"
+    value: str = "skew_date" # Available Types: skew_date, skew_time
+
+    def mutate(self):
+        self.value = random.choice(["skew_date", "skew_time"])

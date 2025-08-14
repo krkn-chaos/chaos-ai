@@ -9,29 +9,21 @@ from chaos_ai.utils import id_generator
 
 class PodScenarioConfig(BaseModel):
     enable: bool = False
-    # namespace: List[str] = ["openshift-.*"]
-    # pod_label: List[str] = [""]
-    # name_pattern: List[str] = [".*"]
 
 
 class AppOutageScenarioConfig(BaseModel):
     enable: bool = False
-    # namespace: List[str] = []
-    # pod_selector: List[str] = []
 
 
 class ContainerScenarioConfig(BaseModel):
     enable: bool = False
-    # namespace: List[str] = []
-    # label_selector: List[str] = []
-    # container_name: List[str] = []
 
 
 class NodeHogScenarioConfig(BaseModel):
     enable: bool = False
-    # node_selector: List[str] = []
-    # taints: List[str] = []
 
+class TimeScenarioConfig(BaseModel):
+    enable: bool = False
 
 class ScenarioConfig(BaseModel):
     application_outages: Optional[AppOutageScenarioConfig] = Field(
@@ -48,6 +40,9 @@ class ScenarioConfig(BaseModel):
     )
     node_memory_hog: Optional[NodeHogScenarioConfig] = Field(
         alias="node-memory-hog", default=None
+    )
+    time_scenarios: Optional[TimeScenarioConfig] = Field(
+        alias="time-scenarios", default=None
     )
 
 
